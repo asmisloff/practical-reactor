@@ -198,11 +198,6 @@ public class c8_Sinks extends SinksBase {
             int finalI = i;
             new Thread(() ->  {
                 while (sink.tryEmitNext(finalI) == Sinks.EmitResult.FAIL_NON_SERIALIZED) {
-                    try {
-                        Thread.sleep(Duration.ofMillis(10).toMillis());
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
                 }
             })
                 .start();
